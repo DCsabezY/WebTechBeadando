@@ -26,32 +26,48 @@
 
         getCarDetails(neptun, id).then(car => {
             document.getElementById('car-detail').innerHTML = `
-    <div class="car-detail-header">
-        <h1>${car.brand} ${car.model}</h1>
-        <span class="car-id">#${car.id}</span>
-    </div>
-    <div class="car-detail-grid">
-        <div class="car-detail-item">
-            <span class="car-detail-label">Tulajdonos</span>
-            <span class="car-detail-value">${car.owner}</span>
-        </div>
-        <div class="car-detail-item">
-            <span class="car-detail-label">Üzembe helyezés</span>
-            <span class="car-detail-value">${car.dayOfCommission}</span>
-        </div>
-        <div class="car-detail-item">
-            <span class="car-detail-label">Fogyasztás</span>
-            <span class="car-detail-value">${car.electric ? '— (elektromos)' : car.fuelUse + ' L/100km'}</span>
-        </div>
-        <div class="car-detail-item">
-            <span class="car-detail-label">Hajtás</span>
-            <span class="car-detail-value ${car.electric ? 'badge-electric' : 'badge-fuel'}">${car.electric ? '⚡ Elektromos' : '⛽ Benzin/Dízel'}</span>
-        </div>
-    </div>
-    <a class="btn" href="cars.html">← Vissza</a>
-`;
-
+                <div class="car-detail-header">
+                    <h1>${car.brand} ${car.model}</h1>
+                    <span class="car-id">#${car.id}</span>
+                </div>
+                <div class="car-detail-grid">
+                    <div class="car-detail-item">
+                        <span class="car-detail-label">Tulajdonos</span>
+                        <span class="car-detail-value">${car.owner}</span>
+                    </div>
+                    <div class="car-detail-item">
+                        <span class="car-detail-label">Üzembe helyezés</span>
+                        <span class="car-detail-value">${car.dayOfCommission}</span>
+                    </div>
+                    <div class="car-detail-item">
+                        <span class="car-detail-label">Fogyasztás</span>
+                        <span class="car-detail-value">${car.electric ? '— (elektromos)' : car.fuelUse + ' L/100km'}</span>
+                    </div>
+                    <div class="car-detail-item">
+                        <span class="car-detail-label">Hajtás</span>
+                        <span class="car-detail-value ${car.electric ? 'badge-electric' : 'badge-fuel'}">${car.electric ? '⚡ Elektromos' : '⛽ Benzin/Dízel'}</span>
+                    </div>
+                </div>
+                <div class="detail-btns">
+                    <a class="btn" href="cars.html">← Vissza</a>
+                    <a class="btn" href="edit-car.html?id=${car.id}">✏️ Szerkesztés</a>
+                    <button class="btn btn-danger" onclick="handleDelete()">🗑 Törlés</button>
+                </div>
+            `;
         })
+
+        function handleDelete() {
+            if (!confirm('Biztosan törölni szeretnéd ezt az autót?')) return;
+
+            deleteCar(neptun, id)
+                .then(() => {
+                    alert('Autó sikeresen törölve!');
+                    window.location.href = 'cars.html';
+                })
+                .catch(() => {
+                    alert('Hiba történt a törlés során.');
+                });
+        }
     </script>
 </body>
 </html>

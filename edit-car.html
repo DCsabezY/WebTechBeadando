@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BorsodTaxi - Autó Szerkesztése</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="new-car-form">
+        <h1>Autó szerkesztése</h1>
+        <form id="car-form">
+            <label>Márka</label>
+            <select id="brand"></select>
+
+            <label>Modell</label>
+            <input type="text" id="model" placeholder="pl. Aygo">
+
+            <label>Tulajdonos</label>
+            <input type="text" id="owner" placeholder="pl. Kiss János">
+
+            <label>Üzembe helyezés</label>
+            <input type="date" id="dayOfCommission">
+
+            <label>Elektromos?</label>
+            <input type="checkbox" id="electric">
+
+            <label>Fogyasztás (L/100km)</label>
+            <input type="number" id="fuelUse" step="any" min="0">
+
+            <div class="detail-btns">
+                <a class="btn" id="back-btn" href="cars.html">← Vissza</a>
+                <button type="submit" class="btn">💾 Mentés</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        const neptun = getNeptun();
+        if (!neptun) window.location.href = 'index.html';
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+
+        if (!id) {
+            alert("Nincs autó kiválasztva.");
+            window.location.href = 'cars.html';
+        }
+
+        document.getElementById('back-btn').href = `car.html?id=${id}`;
+
+        fillBrandSelect('brand');
+
+        // Meglévő adatok betöltése
+        getCarDetails(neptun, id).then(car => {
+            document.getElementById('brand').value = car.brand;
+            document.getElementById('model').value = car.model;
+            document.getElementById('owner').value = car.owner;
+            document.getElementById('dayOfCommission').value = car.dayOfCommission;
+            document.getElementById('electric').checked = car.electric;
+            document.getElementById('fuelUse').value = car.electric ? '' : car.fuelUse;
+            document.getElementById('fuelUse').disabled = car.electric;
+        });
+
+        document.getElementById('electric').addEventListener('change', function() {
+            document.getElementById('fuelUse').disabled = this.checked;
+            if (this.checked) document.getElementById('fuelUse').value = '';
+        });
+
+        document.getElementById('car-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const electric = document.getElementById('electric').checked;
+            const fuelUse = parseFloat(document.getElementById('fuelUse').value);
+            const owner = document.getElementById('owner').value.trim();
+
+            if (!owner.includes(' ')) {
+                alert('A tulajdonos névnek legalább egy szóközt kell tartalmaznia!');
+                return;
+            }
+
+            if (!electric && (!fuelUse || fuelUse <= 0)) {
+                alert('Nem elektromos autónál a fogyasztásnak 0-nál nagyobbnak kell lennie!');
+                return;
+            }
+
+            const car = {
+                id: parseInt(id),
+                brand: document.getElementById('brand').value,
+                model: document.getElementById('model').value.trim(),
+                owner: owner,
+                dayOfCommission: document.getElementById('dayOfCommission').value,
+                electric: electric,
+                fuelUse: electric ? 0 : fuelUse
+            };
+
+            updateCar(neptun, id, car).then(() => {
+                alert('Autó sikeresen módosítva!');
+                window.location.href = `car.html?id=${id}`;
+            }).catch(() => {
+                alert('Hiba történt a mentés során.');
+            });
+        });
+    </script>
+</body>
+</html>

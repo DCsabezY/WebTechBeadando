@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BorsodTaxi - Autók</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <h1 class="cars-title">Autók</h1>
+    <div id="cars-list"></div>
+
+    <script src="app.js"></script>
+    <script>
+        const neptun = getNeptun();
+
+        if (!neptun) {
+            window.location.href = 'index.html';
+        }
+
+        getCars(neptun).then(cars => {
+            const list = document.getElementById('cars-list');
+            
+            for (const car of cars) {
+                list.innerHTML += `
+                    <div class="cars-card">
+                        <h2>${car.id}. ${car.owner}</h2>
+                        <p>Autó: ${car.brand} ${car.model}</p>
+                        <p>Fogyasztás: ${car.fuelUse.toFixed(3)}</p>
+                        <a href="car.html?id=${car.id}" class="btn">Részletek</a>
+                    </div>
+                `;
+            }
+        })
+    </script>
+</body>
+</html>

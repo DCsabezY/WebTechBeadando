@@ -1,0 +1,316 @@
+/* ── 1. RESET & VÁLTOZÓK ── */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --accent:      #22c55e;
+    --accent-dark: #16a34a;
+    --navy:        #14532d;
+    --navy-light:  #166534;
+    --bg:          #f0fdf4;
+    --surface:     #ffffff;
+    --text:        #14532d;
+    --muted:       #6b7280;
+    --border:      #d1fae5;
+    --danger:      #ef4444;
+    --danger-dark: #dc2626;
+    --success:     #22c55e;
+    --warning:     #f59e0b;
+    --radius:      10px;
+    --radius-sm:   6px;
+    --shadow:      0 2px 10px rgba(0,0,0,0.08);
+    --shadow-md:   0 4px 20px rgba(0,0,0,0.13);
+    --font:        'Outfit', Arial, sans-serif;
+}
+
+/* ── 2. ALAP ── */
+body {
+    font-family: var(--font);
+    background-color: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.5;
+    font-size: 16px;
+}
+
+h1, h2, h3, h4 {
+    margin-bottom: 0.4em;
+    line-height: 1.2;
+}
+
+p {
+    margin-bottom: 0.8em;
+}
+
+a {
+    color: var(--accent-dark);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.hidden {
+    display: none;
+}
+
+/* ── 3. NAVBAR ── */
+.navbar-wrapper {
+    padding: 12px 24px;
+}
+
+.navbar {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: var(--navy-light);
+    padding: 0 24px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 24px;
+    border-radius: 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+.navbar-brand {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.navbar-brand:hover {
+    text-decoration: none;
+    color: var(--accent-dark);
+}
+
+.navbar-right {
+    margin-left: auto;
+}
+
+.brand-svg {
+    width: 28px;
+    height: 28px;
+    filter: invert(48%) sepia(79%) saturate(476%) hue-rotate(86deg) brightness(95%) contrast(91%);
+}
+
+/* ── 4. Gomb ── */
+.btn {
+    background-color: var(--accent);
+    color: var(--navy);
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn:hover {
+    background-color: var(--accent-dark);
+}
+
+/* ── 5. Login ── */
+.login-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+.login-container {
+    min-height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.login-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 48px 40px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+}
+
+.login-card h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+#neptun-input {
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: var(--font);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    width: 160px;
+    transition: border-color 0.2s;
+}
+
+#neptun-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(245,197,24,0.15);
+}
+
+#login-btn {
+    background-color: var(--accent);
+    color: var(--navy);
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 10px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: background 0.2s;
+}
+
+#login-btn:hover {
+    background-color: var(--accent-dark);
+}
+
+/* ── 6. Autók ── */
+.cars-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 28px;
+    text-align: center;
+}
+
+#cars-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 18px;
+    padding: 28px;
+}
+
+.cars-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+
+.cars-card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.cars-card h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0;
+}
+
+.cars-card p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin: 0;
+}
+
+/* ── 7. Autó részletek ── */
+#car-detail {
+    max-width: 600px;
+    margin: 40px auto;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#car-detail h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+#car-detail p {
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin: 0;
+}
+
+#car-detail .btn {
+    align-self: flex-start;
+}
+
+.car-detail-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--border);
+}
+
+.car-id {
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.car-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.car-detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+}
+
+.car-detail-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+}
+
+.car-detail-value {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.badge-electric {
+    color: #166534;
+    font-weight: 600;
+}
+
+.badge-fuel {
+    color: #92400e;
+    font-weight: 600;
+}

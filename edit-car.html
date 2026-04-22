@@ -61,6 +61,10 @@
             document.getElementById('electric').checked = car.electric;
             document.getElementById('fuelUse').value = car.electric ? '' : car.fuelUse;
             document.getElementById('fuelUse').disabled = car.electric;
+        }).catch(err => {
+            console.error(err);
+            alert('Hiba történt az autó adatainak betöltésekor. Kérjük, próbáld újra!');
+            window.location.href = 'cars.html';
         });
 
         document.getElementById('electric').addEventListener('change', function() {
@@ -71,10 +75,13 @@
         document.getElementById('car-form').addEventListener('submit', function(e) {
             e.preventDefault();
 
+            const brand = document.getElementById('brand').value;
+            const model = document.getElementById('model').value.trim();
+            const owner = document.getElementById('owner').value.trim();
+            const dayOfCommission = document.getElementById('dayOfCommission').value;
             const electric = document.getElementById('electric').checked;
             const fuelUse = parseFloat(document.getElementById('fuelUse').value);
-            const owner = document.getElementById('owner').value.trim();
-
+            
             if (!owner.includes(' ')) {
                 alert('A tulajdonos névnek legalább egy szóközt kell tartalmaznia!');
                 return;
@@ -85,12 +92,22 @@
                 return;
             }
 
+            if (!model) {
+                alert('A modell megadása kötelező!');
+                return;
+            }
+
+            if (!dayOfCommission) {
+                alert('Az üzembe helyezés dátumának megadása kötelező!');
+                return;
+            }
+
             const car = {
                 id: parseInt(id),
-                brand: document.getElementById('brand').value,
-                model: document.getElementById('model').value.trim(),
+                brand: brand,
+                model: model,
                 owner: owner,
-                dayOfCommission: document.getElementById('dayOfCommission').value,
+                dayOfCommission: dayOfCommission,
                 electric: electric,
                 fuelUse: electric ? 0 : fuelUse
             };
@@ -98,7 +115,8 @@
             updateCar(neptun, id, car).then(() => {
                 alert('Autó sikeresen módosítva!');
                 window.location.href = `car.html?id=${id}`;
-            }).catch(() => {
+            }).catch(err => {
+                console.error(err);
                 alert('Hiba történt a mentés során.');
             });
         });

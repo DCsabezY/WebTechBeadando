@@ -47,12 +47,18 @@ function handleLogout() {
 
 function getCars(neptun) {
     return fetch(`${API_BASE}/${neptun}/car`)
-        .then(res => res.json()); 
+        .then(res => {
+            if (!res.ok) throw new Error(`Szerverhiba: ${res.status}`);
+            return res.json();
+        }); 
 }
 
 function getCarDetails(neptun, id) {
     return fetch(`${API_BASE}/${neptun}/car/${id}`)
-        .then(res => res.json());
+        .then(res => {
+            if (!res.ok) throw new Error(`Szerverhiba: ${res.status}`);
+            return res.json();
+        });
 }
 
 function createCar(neptun, carData) {
@@ -60,7 +66,10 @@ function createCar(neptun, carData) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(carData)
-    }).then(res => res.json());
+    }).then(res => {
+        if (!res.ok) throw new Error(`Szerverhiba: ${res.status}`);
+        return res.json();
+    });
 }
 
 function fillBrandSelect(selectId) {
@@ -73,7 +82,10 @@ function fillBrandSelect(selectId) {
 function deleteCar(neptun, id) {
     return fetch(`${API_BASE}/${neptun}/car/${id}`, {
         method: 'DELETE'
-    }).then(res => res.json());
+    }).then(res => {
+        if (!res.ok) throw new Error(`Szerverhiba: ${res.status}`);
+        return res.json();
+    });
 
 }
 
@@ -82,7 +94,10 @@ function updateCar(neptun, id, carData) {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(carData)
-    }).then(res => res.json());
+    }).then(res => {
+        if (!res.ok) throw new Error(`Szerverhiba: ${res.status}`);
+        return res.json();
+    });
 }
 
 loadNavigation();

@@ -27,12 +27,15 @@
                     <div class="cars-card">
                         <h2>${car.id}. ${car.owner}</h2>
                         <p>Autó: ${car.brand} ${car.model}</p>
-                        <p>Fogyasztás: ${car.fuelUse.toFixed(3)}</p>
+                        <p>Fogyasztás: ${car.electric ? '— (elektromos)' : car.fuelUse.toFixed(3) + ' L/100km'}</p>
                         <a href="car.html?id=${car.id}" class="btn">Részletek</a>
                     </div>
                 `;
             }
-        })
+        }).catch(err => {
+            console.error(err);
+            alert('Hiba történt az autók betöltésekor. Kérjük, próbáld újra!');
+        });
     </script>
 </body>
 </html>

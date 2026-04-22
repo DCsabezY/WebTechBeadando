@@ -54,7 +54,11 @@
                     <button class="btn btn-danger" onclick="handleDelete()">🗑 Törlés</button>
                 </div>
             `;
-        })
+        }).catch(err => {
+            console.error(err);
+            alert('Hiba történt az autó adatainak betöltésekor. Kérjük, próbáld újra!');
+            window.location.href = 'cars.html';
+        });
 
         function handleDelete() {
             if (!confirm('Biztosan törölni szeretnéd ezt az autót?')) return;
@@ -64,7 +68,8 @@
                     alert('Autó sikeresen törölve!');
                     window.location.href = 'cars.html';
                 })
-                .catch(() => {
+                .catch(err => {
+                    console.error(err);
                     alert('Hiba történt a törlés során.');
                 });
         }

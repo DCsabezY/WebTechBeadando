@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BorsodTaxi - Autók</title>
     <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
-    <h1 class="cars-title">Autók</h1>
-    <div id="cars-list"></div>
+    <div class="page-content">
+        <div class="page-header">
+            <h1>Autók</h1>
+            <span class="page-header-sub">Flotta járművei</span>
+        </div>
+        <div id="cars-list"></div>
+    </div>
 
     <script src="app.js"></script>
     <script>
@@ -21,14 +25,19 @@
 
         getCars(neptun).then(cars => {
             const list = document.getElementById('cars-list');
-            
+
             for (const car of cars) {
                 list.innerHTML += `
                     <div class="cars-card">
-                        <h2>${car.id}. ${car.owner}</h2>
-                        <p>Autó: ${car.brand} ${car.model}</p>
-                        <p>Fogyasztás: ${car.electric ? '— (elektromos)' : car.fuelUse.toFixed(3) + ' L/100km'}</p>
-                        <a href="car.html?id=${car.id}" class="btn">Részletek</a>
+                        <div class="cars-card-header">
+                            <span class="cars-card-id">#${car.id}</span>
+                            <h2>${car.owner}</h2>
+                        </div>
+                        <p class="cars-card-model">${car.brand} ${car.model}</p>
+                        <div class="cars-card-footer">
+                            <span class="cars-card-fuel">${car.electric ? '⚡ Elektromos' : car.fuelUse.toFixed(1) + ' L/100km'}</span>
+                            <a href="car.html?id=${car.id}" class="btn btn-sm">Részletek →</a>
+                        </div>
                     </div>
                 `;
             }

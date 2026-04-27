@@ -13,7 +13,7 @@ function loadNavigation(){
         .then(res => res.text())
         .then(navbarHTML => {
             document.body.insertAdjacentHTML('afterbegin',navbarHTML);
-        
+
             if (getNeptun()) {
                 document.getElementById('navbar-right').classList.remove('hidden');
             }
@@ -24,7 +24,7 @@ function loadNavigation(){
         
         .catch(err => {
             console.log(err);
-            alert("Hiba a menürerndszer betöltésekor.");
+            alert("Hiba a menürendszer betöltésekor.");
         });
 }
 

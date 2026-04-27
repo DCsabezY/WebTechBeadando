@@ -6,23 +6,21 @@
 }
 
 :root {
-    --accent:      #22c55e;
-    --accent-dark: #16a34a;
-    --navy:        #14532d;
-    --navy-light:  #166534;
-    --bg:          #f0fdf4;
-    --surface:     #ffffff;
-    --text:        #14532d;
-    --muted:       #6b7280;
-    --border:      #d1fae5;
+    --accent:      #f59e0b;
+    --accent-dark: #d97706;
+    --accent-glow: rgba(245,158,11,0.1);
+    --bg:          #0f172a;
+    --surface:     #1e293b;
+    --surface-2:   #273548;
+    --border:      #2d3f5a;
+    --text:        #f1f5f9;
+    --muted:       #8b9dc0;
     --danger:      #ef4444;
     --danger-dark: #dc2626;
-    --success:     #22c55e;
-    --warning:     #f59e0b;
-    --radius:      10px;
-    --radius-sm:   6px;
-    --shadow:      0 2px 10px rgba(0,0,0,0.08);
-    --shadow-md:   0 4px 20px rgba(0,0,0,0.13);
+    --radius:      12px;
+    --radius-sm:   7px;
+    --shadow:      0 2px 12px rgba(0,0,0,0.4);
+    --shadow-md:   0 8px 32px rgba(0,0,0,0.55);
     --font:        'Outfit', Arial, sans-serif;
 }
 
@@ -30,6 +28,8 @@
 body {
     font-family: var(--font);
     background-color: var(--bg);
+    background-image: radial-gradient(rgba(148,163,184,0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
     color: var(--text);
     min-height: 100vh;
     line-height: 1.5;
@@ -37,16 +37,11 @@ body {
 }
 
 h1, h2, h3, h4 {
-    margin-bottom: 0.4em;
     line-height: 1.2;
 }
 
-p {
-    margin-bottom: 0.8em;
-}
-
 a {
-    color: var(--accent-dark);
+    color: var(--accent);
     text-decoration: none;
 }
 
@@ -55,30 +50,31 @@ a:hover {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 /* ── 3. NAVBAR ── */
 .navbar-wrapper {
-    padding: 12px 24px;
+    padding: 14px 24px;
 }
 
 .navbar {
-    max-width: 900px;
+    max-width: 920px;
     margin: 0 auto;
-    background-color: var(--navy-light);
-    padding: 0 24px;
+    background: linear-gradient(135deg, var(--surface) 0%, #1c2d4f 100%);
+    border: 1px solid var(--border);
+    padding: 0 28px;
     height: 60px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 24px;
+    gap: 20px;
     border-radius: 30px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
 .navbar-brand {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: var(--accent);
     text-decoration: none;
@@ -98,38 +94,63 @@ a:hover {
 }
 
 .brand-svg {
-    width: 28px;
-    height: 28px;
-    filter: invert(48%) sepia(79%) saturate(476%) hue-rotate(86deg) brightness(95%) contrast(91%);
+    width: 26px;
+    height: 26px;
+    filter: brightness(0) saturate(100%) invert(66%) sepia(85%) saturate(587%) hue-rotate(3deg) brightness(102%) contrast(99%);
 }
 
-/* ── 4. Gomb ── */
+/* ── 4. GOMBOK ── */
 .btn {
     background-color: var(--accent);
-    color: var(--navy);
+    color: #0f172a;
     border: none;
     border-radius: var(--radius-sm);
-    padding: 8px 16px;
+    padding: 8px 18px;
     font-size: 0.9rem;
+    font-family: var(--font);
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.18s, transform 0.1s;
+    text-decoration: none;
+    display: inline-block;
+    line-height: 1.4;
 }
 
 .btn:hover {
     background-color: var(--accent-dark);
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-sm {
+    padding: 5px 12px;
+    font-size: 0.82rem;
 }
 
 .new-car-btn {
-    background-color: var(--accent);
-    color: var(--navy);
-    border: none;
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid rgba(245,158,11,0.4);
     border-radius: var(--radius-sm);
-    padding: 8px 16px;
-    font-size: 0.9rem;
+    padding: 6px 14px;
+    font-size: 0.88rem;
+    font-family: var(--font);
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.18s, border-color 0.18s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.new-car-btn:hover {
+    background: var(--accent-glow);
+    border-color: var(--accent);
+    text-decoration: none;
+    color: var(--accent);
 }
 
 .btn-danger {
@@ -141,136 +162,217 @@ a:hover {
     background-color: var(--danger-dark);
 }
 
-/* ── 5. Login ── */
-.login-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-}
+/* ── 5. LOGIN ── */
 .login-container {
-    min-height: calc(100vh - 60px);
+    min-height: calc(100vh - 88px);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 16px;
+    gap: 14px;
+    padding: 24px;
+}
+
+.login-title {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
 }
 
 .login-card {
     background: var(--surface);
     border-radius: var(--radius);
-    padding: 48px 40px;
-    max-width: 420px;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    padding: 44px 44px 40px;
+    max-width: 380px;
     width: 100%;
     text-align: center;
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-md), 0 0 60px rgba(245,158,11,0.07);
 }
 
 .login-card h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 10px;
+    font-size: 1.55rem;
+    color: var(--text);
+    margin-bottom: 6px;
+}
+
+.login-card > p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+.login-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 22px 0;
 }
 
 #neptun-input {
-    padding: 10px 14px;
+    display: block;
+    padding: 10px 16px;
     border: 1.5px solid var(--border);
     border-radius: var(--radius-sm);
     font-family: var(--font);
-    font-size: 1rem;
+    font-size: 1.05rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    width: 160px;
-    transition: border-color 0.2s;
+    letter-spacing: 0.18em;
+    width: 100%;
+    background: var(--surface-2);
+    color: var(--text);
+    text-align: center;
+    margin: 0 auto 12px;
+    transition: border-color 0.18s, box-shadow 0.18s;
+}
+
+#neptun-input::placeholder {
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: none;
+    font-size: 0.9rem;
 }
 
 #neptun-input:focus {
     outline: none;
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(245,197,24,0.15);
+    box-shadow: 0 0 0 3px rgba(245,158,11,0.15);
 }
 
 #login-btn {
-    background-color: var(--accent);
-    color: var(--navy);
-    border: none;
-    border-radius: var(--radius-sm);
-    padding: 10px 24px;
+    padding: 11px 0;
+    width: 100%;
     font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 12px;
-    transition: background 0.2s;
-}
-
-#login-btn:hover {
-    background-color: var(--accent-dark);
-}
-
-/* ── 6. Autók ── */
-.cars-title {
-    font-size: 3rem;
     font-weight: 700;
-    margin: 28px;
-    text-align: center;
+    letter-spacing: 0.03em;
 }
 
-#cars-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 18px;
-    padding: 28px;
+/* ── 6. OLDAL WRAPPER ── */
+.page-content {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px 48px;
 }
 
-.cars-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px;
-    box-shadow: var(--shadow);
+.page-header {
+    padding: 28px 0 18px;
     display: flex;
-    flex-direction: column;
-    gap: 8px;
-    transition: box-shadow 0.2s, transform 0.2s;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 28px;
 }
 
-
-.cars-card:hover {
-    box-shadow: var(--shadow-md);
-}
-
-.cars-card h2 {
-    font-size: 1.1rem;
+.page-header h1 {
+    font-size: 1.75rem;
     font-weight: 700;
     color: var(--text);
     margin: 0;
 }
 
-.cars-card p {
-    font-size: 0.88rem;
+.page-header-sub {
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+/* ── 7. AUTÓK GRID ── */
+#cars-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
+}
+
+.cars-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: box-shadow 0.2s, transform 0.15s;
+}
+
+.cars-card:hover {
+    box-shadow: var(--shadow-md), 0 0 0 1px rgba(245,158,11,0.25);
+    transform: translateY(-2px);
+}
+
+.cars-card-header {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 2px;
+}
+
+.cars-card-id {
+    font-size: 0.7rem;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    font-variant-numeric: tabular-nums;
+}
+
+.cars-card-header h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cars-card-model {
+    font-size: 0.9rem;
     color: var(--muted);
     margin: 0;
 }
 
-/* ── 7. Autó részletek ── */
+.cars-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 4px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+}
+
+.cars-card-fuel {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-weight: 500;
+}
+
+/* ── 8. AUTÓ RÉSZLETEK ── */
 #car-detail {
     max-width: 600px;
-    margin: 40px auto;
+    margin: 36px auto;
     background: var(--surface);
     border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
     border-radius: var(--radius);
     padding: 32px;
     box-shadow: var(--shadow-md);
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
 }
 
 #car-detail h1 {
-    font-size: 1.6rem;
+    font-size: 1.55rem;
     font-weight: 700;
     margin: 0;
+    color: var(--text);
 }
 
 #car-detail p {
@@ -279,44 +381,46 @@ a:hover {
     margin: 0;
 }
 
-#car-detail .btn {
-    align-self: flex-start;
-}
-
 .car-detail-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-bottom: 16px;
-    border-bottom: 2px solid var(--border);
+    border-bottom: 1px solid var(--border);
 }
 
 .car-id {
-    font-size: 0.9rem;
-    color: var(--muted);
-    font-weight: 600;
+    font-size: 0.78rem;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    background: var(--accent-glow);
+    border: 1px solid rgba(245,158,11,0.25);
+    padding: 3px 12px;
+    border-radius: 20px;
 }
 
 .car-detail-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    gap: 10px;
 }
 
 .car-detail-item {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    background: var(--bg);
+    background: var(--surface-2);
     border-radius: var(--radius-sm);
-    padding: 12px 16px;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
 }
 
 .car-detail-label {
-    font-size: 0.75rem;
+    font-size: 0.68rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     color: var(--muted);
 }
 
@@ -327,52 +431,64 @@ a:hover {
 }
 
 .badge-electric {
-    color: #166534;
+    color: var(--accent);
     font-weight: 600;
 }
 
 .badge-fuel {
-    color: #92400e;
+    color: #fb923c;
     font-weight: 600;
 }
 
 .detail-btns {
-    display:flex; 
-    justify-content: space-between; 
-    margin-top:8px;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
 }
-/* ── 8. Új autó form ── */
-#new-car-form {
-    max-width: 600px;
-    margin: 40px auto;
+
+.detail-btns .btn {
+    flex: 1;
+    text-align: center;
+    min-width: 100px;
+}
+
+/* ── 9. FORMOK ── */
+#new-car-form, #edit-car-form {
+    max-width: 540px;
+    margin: 36px auto;
     background: var(--surface);
     border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
     border-radius: var(--radius);
-    padding: 32px;
+    padding: 36px 40px 40px;
     box-shadow: var(--shadow-md);
 }
 
-#new-car-form h1 {
-    font-size: 1.6rem;
+#new-car-form h1, #edit-car-form h1 {
+    font-size: 1.45rem;
     font-weight: 700;
+    color: var(--text);
     margin-bottom: 24px;
     padding-bottom: 16px;
-    border-bottom: 2px solid var(--border);
+    border-bottom: 1px solid var(--border);
 }
 
 #car-form {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
 }
 
 #car-form label {
-    font-size: 0.85rem;
-    font-weight: 600;
+    font-size: 0.75rem;
+    font-weight: 700;
     color: var(--muted);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-top: 4px;
+    letter-spacing: 0.09em;
+    margin-top: 8px;
 }
 
 #car-form input,
@@ -383,15 +499,24 @@ a:hover {
     font-family: var(--font);
     font-size: 0.95rem;
     color: var(--text);
-    background: var(--bg);
-    transition: border-color 0.2s;
+    background: var(--surface-2);
+    transition: border-color 0.18s, box-shadow 0.18s;
+}
+
+#car-form input::placeholder {
+    color: var(--muted);
+}
+
+#car-form select option {
+    background: var(--surface-2);
+    color: var(--text);
 }
 
 #car-form input:focus,
 #car-form select:focus {
     outline: none;
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(34,197,94,0.15);
+    box-shadow: 0 0 0 3px rgba(245,158,11,0.15);
 }
 
 #car-form input[type="checkbox"] {
@@ -403,12 +528,13 @@ a:hover {
 }
 
 #car-form input:disabled {
-    opacity: 0.4;
+    opacity: 0.3;
     cursor: not-allowed;
 }
 
-#car-form .btn {
-    margin-top: 12px;
+#car-form > button[type="submit"].btn {
+    margin-top: 20px;
     padding: 12px;
     font-size: 1rem;
+    width: 100%;
 }

@@ -41,7 +41,7 @@
                     </div>
                     <div class="car-detail-item">
                         <span class="car-detail-label">Fogyasztás</span>
-                        <span class="car-detail-value">${car.electric ? '— (elektromos)' : car.fuelUse + ' L/100km'}</span>
+                        <span class="car-detail-value">${car.electric ? '— (elektromos)' : car.fuelUse.toFixed(2) + ' L/100km'}</span>
                     </div>
                     <div class="car-detail-item">
                         <span class="car-detail-label">Hajtás</span>

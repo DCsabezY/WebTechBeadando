@@ -13,7 +13,7 @@ Webtechnológiák beadandó feladat. Egy egyszerű, böngészőalapú flottakeze
 
 ## Technológiák
 
-- HTML5, CSS3, vanilla JavaScript (keretrendszer nélkül)
+- HTML, CSS, JavaScript
 - REST API kommunikáció (`fetch`)
 - `localStorage` a bejelentkezett felhasználó (Neptun-kód) tárolásához
 
@@ -29,16 +29,6 @@ Webtechnológiák beadandó feladat. Egy egyszerű, böngészőalapú flottakeze
 | `app.js` | Közös logika és API-hívások |
 | `style.css` | Stílusok |
 
-## API
-
-Az alkalmazás a következő REST API-t használja:
-
-```
-https://iit-playground.arondev.hu/api/{neptun}/car
-```
-
-Támogatott műveletek: `GET`, `POST`, `PUT`, `DELETE`
-
 ## Autó adatmezők
 
 | Mező | Leírás |
@@ -53,7 +43,7 @@ Támogatott műveletek: `GET`, `POST`, `PUT`, `DELETE`
 ## Használat
 
 1. Nyisd meg az `index.html` fájlt egy böngészőben (vagy indíts egy helyi HTTP szervert).
-2. Add meg a Neptun-kódodat a bejelentkezéshez.
+2. Add meg a hiteles Neptun-kódodat a bejelentkezéshez(neptun kódnak szereplnie kell a rendszerben).
 3. Kezeld a flotta járműveit a navigációs menü segítségével.
 
 > **Megjegyzés:** A `localStorage`-ban tárolt Neptun-kód azonosítja a felhasználót az API felé. A „Kijelentkezés" gomb törli ezt az adatot.

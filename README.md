@@ -17,29 +17,6 @@ Webtechnológiák beadandó feladat. Egy egyszerű, böngészőalapú flottakeze
 - REST API kommunikáció (`fetch`)
 - `localStorage` a bejelentkezett felhasználó (Neptun-kód) tárolásához
 
-## Oldalak
-
-| Fájl | Leírás |
-|---|---|
-| `index.html` | Bejelentkezési oldal |
-| `cars.html` | Autólista |
-| `car.html` | Autó részletei |
-| `new-car.html` | Új autó hozzáadása |
-| `edit-car.html` | Autó szerkesztése |
-| `app.js` | Közös logika és API-hívások |
-| `style.css` | Stílusok |
-
-## Autó adatmezők
-
-| Mező | Leírás |
-|---|---|
-| Márka | Legördülő listából választható (pl. Toyota, BMW) |
-| Modell | Szabad szöveges mező |
-| Tulajdonos | Teljes név (legalább egy szóközt kell tartalmaznia) |
-| Üzembe helyezés | Dátum |
-| Elektromos | Jelölőnégyzet |
-| Fogyasztás (L/100km) | Csak nem elektromos autóknál kötelező |
-
 ## Használat
 
 1. Nyisd meg az `index.html` fájlt egy böngészőben (vagy indíts egy helyi HTTP szervert).

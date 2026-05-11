@@ -14,8 +14,10 @@ function loadNavigation(){
             if (getNeptun()) {
                 document.getElementById('navbar-right').classList.remove('hidden');
             }
-            if (window.location.pathname.endsWith('cars.html')) {
+            const path = window.location.pathname;
+            if (path.endsWith('cars.html') || path.endsWith('list.html')) {
                 document.getElementById('new-car-btn').classList.remove('hidden');
+                document.getElementById('list-btn').classList.remove('hidden');
             }
         })
         
@@ -95,6 +97,14 @@ function updateCar(neptun, id, carData) {
         if (!res.ok) throw new Error(`Szerverhiba: ${res.status}`);
         return res.json();
     });
+}
+
+function getAvailableModels(brand) {
+    return fetch(`${API_BASE}/available-models?brand=${encodeURIComponent(brand)}`)
+        .then(res => {
+            if (!res.ok) throw new Error(`Szerverhiba: ${res.status}`);
+            return res.json();
+        });
 }
 
 loadNavigation();

@@ -1,12 +1,9 @@
 const API_BASE = 'https://iit-playground.arondev.hu/api';
 
 const CAR_BRANDS = [
-    'Toyota','Honda','Ford','Chevrolet','Nissan',
-    'BMW','Mercedes-Benz','Volkswagen','Audi','Hyundai',
-    'Kia','Subaru','Lexus','Mazda','Tesla',
-    'Jeep','Porsche','Volvo','Jaguar','Land Rover',
-    'Mitsubishi','Ferrari','Lamborghini'
-];
+    'Toyota', 'Honda', 'Ford', 'Chevrolet', 'Nissan', 'BMW', 'Mercedes-Benz',
+            'Volkswagen', 'Audi', 'Hyundai', 'Kia', 'Subaru', 'Lexus', 'Mazda', 'Tesla',
+            'Jeep', 'Porsche', 'Volvo', 'Jaguar', 'Land Rover', 'Mitsubishi', 'Ferrari', 'Lamborghini'];
 
 function loadNavigation(){
     fetch('./navbar.html')

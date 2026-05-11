@@ -99,8 +99,9 @@ function updateCar(neptun, id, carData) {
     });
 }
 
+//nincs benne GET a metódusnál
 function getAvailableModels(brand) {
-    return fetch(`${API_BASE}/available-models?brand=${encodeURIComponent(brand)}`)
+    return fetch(`${API_BASE}/available-models?brand=${(brand)}`)
         .then(res => {
             if (!res.ok) throw new Error(`Szerverhiba: ${res.status}`);
             return res.json();
